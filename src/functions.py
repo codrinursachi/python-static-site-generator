@@ -274,7 +274,7 @@ def generate_page(from_path, template_path, dest_path, basepath):
     title = extract_title(markdown)
     final_html = template.replace("{{ Title }}", title).replace(
         "{{ Content }}", html_content).replace(
-            "href=\"/", f"href=\"{basepath}").replace("src=\"/", "src=\"{basepath}")
+            "href=\"/", f"href=\"{basepath}").replace("src=\"/", f"src=\"{basepath}")
     if not os.path.exists(os.path.dirname(dest_path)):
         os.makedirs(os.path.dirname(dest_path))
     with open(dest_path, "w") as dest_file:
