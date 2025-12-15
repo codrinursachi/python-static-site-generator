@@ -2,6 +2,7 @@
 
 import os
 import shutil
+import sys
 from textnode import TextNode
 from functions import generate_page, generate_pages_recursive, text_node_to_html_node
 
@@ -21,12 +22,15 @@ def copy_files_recursive(source_dir_path, dest_dir_path):
 
 
 def main():
-    shutil.rmtree("public")
-    copy_files_recursive("static", "public")
+    basepath = sys.argv[1] or "/"
+    shutil.rmtree("docs")
+    copy_files_recursive("static", "docs")
     generate_pages_recursive(
         "content",
         "template.html",
-        "public",
+        "docs",
+        basepath
     )
+
 
 main()
